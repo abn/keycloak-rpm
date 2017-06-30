@@ -4,7 +4,7 @@
 
 Name:           keycloak
 Version:        3.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Keycloak is an open source identity and access management solution.
 
 Group:          System Environment/Base
@@ -51,8 +51,17 @@ exit 0
 %systemd_preun %{name}.service
 
 %postun
-getent passwd %{name} >/dev/null && userdel %{name}
-getent group %{name} >/dev/null && groupdel %{name}
+case "$1" in
+  0)
+    # This is an uninstallation.
+    systemctl disable %{name}.service
+    getent passwd %{name} >/dev/null && userdel %{name}
+    getent group %{name} >/dev/null && groupdel %{name}
+  ;;
+  1)
+    # This is an upgrade.
+  ;;
+esac
 %systemd_postun_with_restart %{name}.service
 
 %clean
@@ -68,6 +77,8 @@ rm -rf %{buildroot}
 %doc %{_docdir}/%{name}/LICENSE
 
 %changelog
+* Fri Jun 30 2017 Fabian Schlier <mail@fabian-schlier.de> - 3.1.0-2
+- Added logic to avoid user/group deletion on update. Due to the fact that during an update the postun section of the old rpm is called, this fix starts working after two upgrades.
 * Thu Jun 01 2017 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 3.1.0-1
 - Initial packaing source.
 
