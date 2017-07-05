@@ -80,6 +80,7 @@ rm -rf %{buildroot}
 %changelog
 * Wed Jul 05 2017 Fabian Schlier <mail@fabian-schlier.de> - 3.1.0-3
 - Added var/lib/keycloak directory to spec to avoid service start problems with missing directory
+- Switched sysconfig opts from -key value to -key=value syntax to avoid problems when starting on RHEL7
 * Fri Jun 30 2017 Fabian Schlier <mail@fabian-schlier.de> - 3.1.0-2
 - Added logic to avoid user/group deletion on update. Due to the fact that during an update the postun section of the old rpm is called, this fix starts working after two upgrades.
 * Thu Jun 01 2017 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 3.1.0-1
