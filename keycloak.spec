@@ -55,7 +55,6 @@ exit 0
 case "$1" in
   0)
     # This is an uninstallation.
-    systemctl disable %{name}.service
     getent passwd %{name} >/dev/null && userdel %{name}
     getent group %{name} >/dev/null && groupdel %{name}
   ;;
