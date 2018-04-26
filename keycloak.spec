@@ -3,7 +3,7 @@
 %define jboss_home    /opt/jboss
 
 Name:           keycloak
-Version:        3.2.0
+Version:        3.3.0
 Release:        1%{?dist}
 Summary:        Keycloak is an open source identity and access management solution.
 
@@ -78,6 +78,9 @@ rm -rf %{buildroot}
 %dir %attr(-, %{name}, %{name}) %{_sharedstatedir}/%{name}
 
 %changelog
+* Thu Apr 26 2018 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 3.3.0-1
+- upgrade to v3.3.0
+
 * Thu Apr 26 2018 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 3.2.0-1
 - upgrade to v3.2.0
 
