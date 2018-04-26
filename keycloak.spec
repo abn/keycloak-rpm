@@ -3,8 +3,8 @@
 %define jboss_home    /opt/jboss
 
 Name:           keycloak
-Version:        3.1.0
-Release:        3%{?dist}
+Version:        3.2.0
+Release:        1%{?dist}
 Summary:        Keycloak is an open source identity and access management solution.
 
 Group:          System Environment/Base
@@ -21,8 +21,8 @@ Requires(pre): shadow-utils
 Requires:      systemd java-headless
 
 %description
-Keycloak is an open source Identity and Access Management solution aimed at 
-modern applications and services. It makes it easy to secure applications and 
+Keycloak is an open source Identity and Access Management solution aimed at
+modern applications and services. It makes it easy to secure applications and
 services with little to no code.
 
 %prep
@@ -78,11 +78,15 @@ rm -rf %{buildroot}
 %dir %attr(-, %{name}, %{name}) %{_sharedstatedir}/%{name}
 
 %changelog
+* Thu Apr 26 2018 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 3.2.0-1
+- upgrade to v3.2.0
+
 * Wed Jul 05 2017 Fabian Schlier <mail@fabian-schlier.de> - 3.1.0-3
 - Added var/lib/keycloak directory to spec to avoid service start problems with missing directory
 - Switched sysconfig opts from -key value to -key=value syntax to avoid problems when starting on RHEL7
+
 * Fri Jun 30 2017 Fabian Schlier <mail@fabian-schlier.de> - 3.1.0-2
 - Added logic to avoid user/group deletion on update. Due to the fact that during an update the postun section of the old rpm is called, this fix starts working after two upgrades.
+
 * Thu Jun 01 2017 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 3.1.0-1
 - Initial packaing source.
-
