@@ -4,7 +4,7 @@
 
 Name:           keycloak
 Version:        4.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Keycloak is an open source identity and access management solution.
 
 Group:          System Environment/Base
@@ -32,7 +32,7 @@ services with little to no code.
 %install
 install -d %{buildroot}%{jboss_home}/%{name}-%{version}
 tar --strip-components=1 -C %{buildroot}%{jboss_home}/%{name}-%{version} -xvf %{SOURCE0}
-ln -sf %{name}-%{version}.Final %{buildroot}%{jboss_home}/%{name}
+ln -sf %{name}-%{version} %{buildroot}%{jboss_home}/%{name}
 install -D %{SOURCE1} %{buildroot}/%{_unitdir}/%{name}.service
 install -D %{SOURCE2} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
 install -D %{SOURCE3} %{buildroot}/%{_docdir}/%{name}/LICENSE
@@ -78,6 +78,9 @@ rm -rf %{buildroot}
 %dir %attr(-, %{name}, %{name}) %{_sharedstatedir}/%{name}
 
 %changelog
+* Fri Sep 21 2018 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 4.4.0-2
+- Fix latest install symlink
+
 * Sat Sep 15 2018 Arun Babu Neelicattu <arun.neelicattu@gmail.com> - 4.4.0-1
 - upgrade to v4.4.0
 
